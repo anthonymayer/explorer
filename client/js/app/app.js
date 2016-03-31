@@ -5,7 +5,7 @@ var ReactDOM = require('react-dom');
 
 var Persistence = require('./modules/persistence/persistence.js');
 var AppDispatcher = require('./dispatcher/AppDispatcher');
-var AppComponent = require('./components/app.js');
+var AppComponent = require('./components/app.jsx');
 var ProjectActions = require('./actions/ProjectActions');
 var ExplorerActions = require('./actions/ExplorerActions');
 var AppStateActions = require('./actions/AppStateActions');
