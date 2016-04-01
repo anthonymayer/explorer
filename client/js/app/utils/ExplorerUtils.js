@@ -44,7 +44,7 @@ function toUnderscoreName(name) {
   })
 }
 
-SKIP = {}
+var SKIP = {}
 function mapSkip(collection, fn) {
   return _.without(_.map(collection, fn), SKIP);
 }
