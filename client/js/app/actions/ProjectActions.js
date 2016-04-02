@@ -89,7 +89,6 @@ var ProjectActions = {
   },
 
   fetchRecentEventsForCollection: function(client, eventCollection) {
-    var project = ProjectStore.getProject();
     ProjectActions.updateEventCollection(eventCollection, {
       loading: true
     });

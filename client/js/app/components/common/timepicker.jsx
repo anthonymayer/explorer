@@ -1,4 +1,3 @@
-var _ = require('lodash');
 var React = require('react');
 var ReactSelect = require('./react_select.jsx');
 

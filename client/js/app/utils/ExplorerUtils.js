@@ -1,10 +1,8 @@
 var _ = require('lodash');
 var Qs = require('qs');
 var stringify = require('json-stable-stringify');
-var moment = require('moment');
 var FormatUtils = require('./FormatUtils');
 var FunnelUtils = require('./FunnelUtils');
-var ProjectUtils = require('./ProjectUtils');
 var FilterUtils = require('./FilterUtils');
 var TimeframeUtils = require('./TimeframeUtils');
 
@@ -35,12 +33,6 @@ var ANALYSIS_TYPES_WITHOUT_TARGET = [
 function toCamelcaseName(name) {
   return name.replace(/_(.)/, function(match, p1) {
     return p1.toUpperCase();
-  })
-}
-
-function toUnderscoreName(name) {
-  return name.replace(/([A-Z])/, function(match, p1) {
-    return '_' + p1.toLowerCase();
   })
 }
 
@@ -286,10 +278,7 @@ module.exports = {
         dynamicConstructorNames = [
           'host', 'protocol', 'requestType'
         ],
-        funnelRootParams = [
-          'event_collection', 'steps'
-        ],
-        dynamicConstructorValues;
+        dynamicContructorValues;
 
     switch(params.analysis_type) {
       case 'funnel':

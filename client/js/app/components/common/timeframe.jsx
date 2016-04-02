@@ -1,12 +1,8 @@
-var _ = require('lodash');
 var moment = require('moment');
 var React = require('react');
 var AbsolutePicker = require('./absolute_picker.jsx');
 var RelativePicker = require('./relative_picker.jsx');
-var FieldsToggle = require('./fields_toggle.jsx');
-var ReactSelect = require('./react_select.jsx');
 var Timezone = require('./timezone.jsx');
-var ExplorerActions = require('../../actions/ExplorerActions');
 var TimeframeUtils = require('../../utils/TimeframeUtils');
 var ProjectUtils = require('../../utils/ProjectUtils');
 

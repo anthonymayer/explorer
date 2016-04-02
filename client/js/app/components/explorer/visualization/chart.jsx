@@ -1,4 +1,3 @@
-var _ = require('lodash');
 var React = require('react');
 var Loader = require('../../common/loader.jsx');
 var KeenViz = require('./keen_viz.jsx');
@@ -52,7 +51,6 @@ var Chart = React.createClass({
 
 	buildViz: function() {
 		var chartContent;
-		var msgContent;
 		var analysisType = this.props.model.query.analysis_type;
 		var wrapClasses = analysisType + '-viz';
 

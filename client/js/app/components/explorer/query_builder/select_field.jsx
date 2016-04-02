@@ -1,5 +1,4 @@
 var React = require('react');
-var _ = require('lodash');
 
 // Components
 var ReactSelect = require('../../common/react_select.jsx');

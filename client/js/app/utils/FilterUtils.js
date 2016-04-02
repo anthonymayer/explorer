@@ -1,6 +1,5 @@
 var _ = require('lodash');
 var moment = require('moment');
-var S = require('string');
 var FormatUtils = require('./FormatUtils');
 var FilterValidations = require('../validations/FilterValidations');
 var RunValidations = require('./RunValidations');
@@ -25,7 +24,7 @@ module.exports = {
       if (typeof filter.property_value === 'string') {
         var coercedDate = new Date(filter.property_value);
         if (coercedDate !== null && coercedDate.toString() !== 'Invalid Date') return coercedDate.toString();
-      } 
+      }
       return module.exports.defaultDate();
     },
 
@@ -75,7 +74,7 @@ module.exports = {
   /**
    * Gets the type for the given filter's property_value. This value should be raw, as in it should not have
    * been put through getCoercedValue yet. So for example, if it's a list type, it should be a string with the
-   * expected list format: "\a word\"", '1', '56', \""another word\"" 
+   * expected list format: "\a word\"", '1', '56', \""another word\""
    * @param  {Object} filter The filter to get the property value coercion type for.
    * @return {String}        The determined type for the given property value.
    */
@@ -83,26 +82,20 @@ module.exports = {
     switch (toType(filter.property_value)) {
       case 'object':
         return 'Geo';
-        break;
       case 'string':
         if (filter.operator === 'exists') return 'Boolean';
         if (isNumeric(filter.property_value) && ['contains', 'not_contains'].indexOf(filter.operator) === -1) return 'Number';
         if (FormatUtils.isDateInStrictFormat(filter.property_value.substring(0, filter.property_value.length-6))) return 'Datetime';
         if (FormatUtils.isList(filter.property_value)) return 'List';
         return 'String';
-        break;
       case 'array':
         return 'List';
-        break;
       case 'boolean':
         return 'Boolean';
-        break;
       case 'number':
         return 'Number';
-        break;
       case 'null':
         return 'Null';
-        break;
     }
   },
 

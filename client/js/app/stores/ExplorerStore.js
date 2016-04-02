@@ -12,8 +12,6 @@ var ProjectStore = require('./ProjectStore');
 
 var RunValidations = require('../utils/RunValidations.js').run;
 var ExplorerValidations = require('../validations/ExplorerValidations.js');
-var FilterValidations = require('../validations/FilterValidations.js');
-var StepValidations = require('../validations/StepValidations.js');
 
 var CHANGE_EVENT = 'change';
 var SHARED_FUNNEL_STEP_PROPERTIES = ['event_collection', 'time', 'timezone', 'filters'];
@@ -160,8 +158,8 @@ function _migrateToFunnel(explorer, newModel) {
 
   _.each(SHARED_FUNNEL_STEP_PROPERTIES, function (key) {
     if(!_.isUndefined(explorer.query[key]) && !_.isNull(explorer.query[key])) {
-      firstStep[key] = explorer.query[key] 
-    }      
+      firstStep[key] = explorer.query[key]
+    }
 
     newModel.query[key] = (key === 'filters') ? [] : null;
   });
@@ -259,7 +257,7 @@ function _prepareFilterUpdates(explorer, filter, updates) {
     if (newOp === 'in') updates.coercion_type = 'List';
     if (newOp === 'exists') updates.coercion_type = 'Boolean';
     if (newOp === 'within') updates.coercion_type = 'Geo';
-    
+
     // If it's not any of these operators, we still need to make sure that the current coercion_type is available
     // as an option for this new operator.
     var coercionOptions = _.find(ProjectUtils.getConstant('FILTER_OPERATORS'), { value: updates.operator }).canBeCoeredTo;
@@ -268,11 +266,11 @@ function _prepareFilterUpdates(explorer, filter, updates) {
       updates.coercion_type = coercionOptions[0];
     }
   }
-  
+
   if (updates.coercion_type === 'Geo' && filter.coercion_type !== 'Geo') {
     updates.property_value = _defaultGeoFilter();
   }
-  
+
   updates.property_value = FilterUtils.getCoercedValue(_.merge({}, filter, updates));
 
   return updates;
@@ -286,7 +284,6 @@ function _wrapGroupBy(group_by) {
 function _create(attrs) {
   if (attrs && attrs.active === true) {
     throw new Error('You must use setActive to set a model as active.');
-    return;
   }
 
   attrs = attrs || {};
@@ -308,7 +305,6 @@ function _create(attrs) {
 function _update(id, updates) {
   if (updates && updates.active === true && !_explorers[id].active) {
     throw new Error('You must use setActive to set a model as active.');
-    return;
   }
 
   var newModel = _prepareUpdates(_explorers[id], updates);
@@ -532,7 +528,7 @@ ExplorerStore.dispatchToken = AppDispatcher.register(function(action) {
 
     case ExplorerConstants.EXPLORER_CREATE_BATCH:
       action.models.forEach(function(model) {
-        _explorers[model.id] ? _update(model.id, model) : _create(model);        
+        _explorers[model.id] ? _update(model.id, model) : _create(model);
       });
       finishAction();
       break;

@@ -1,5 +1,4 @@
 var _ = require('lodash');
-var FormatUtils = require('./FormatUtils.js');
 
 // ***********************
 // ** Project Constants

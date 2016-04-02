@@ -1,5 +1,4 @@
 var React = require('react');
-var _ = require('lodash');
 
 // Components
 var Input = require('../../common/input.jsx');

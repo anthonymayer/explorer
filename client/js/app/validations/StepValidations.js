@@ -1,13 +1,12 @@
-var _ = require('lodash');
 var FormatUtils = require('../utils/FormatUtils');
 var SharedValidators = require('./SharedValidators');
 
 module.exports = {
 
   event_collection: {
-    
+
     msg: 'Choose an Event Collection.',
-    
+
     validate: function(model) {
       return (typeof model.event_collection ==='string' && model.event_collection.length > 0);
     }
