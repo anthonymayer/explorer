@@ -310,7 +310,7 @@ module.exports = {
       return '    ' + toCamelcaseName(param) + ': ' + s(params[param], {space: 4})
     }).join(',\n');
 
-    value = [
+    var value = [
       'var client = new Keen({',
       '  projectId: ' + s(client.config.projectId) + ',',
       '  readKey: ' + s(client.config.readKey) + echoIf(dynamicConstructorValues, ','),
